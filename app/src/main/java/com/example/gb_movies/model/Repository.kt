@@ -1,6 +1,6 @@
 package com.example.gb_movies.model
 
 interface Repository {
-    fun getMovieFromServer(): Movie
-    fun getMovieFromLocalStorage(): Movie
+    fun getMoviesFromServer(): List<Movie>
+    fun getMoviesFromLocalStorage(): List<Movie>
 }

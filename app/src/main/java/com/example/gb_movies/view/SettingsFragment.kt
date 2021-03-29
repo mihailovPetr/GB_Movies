@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.gb_movies.R
+import com.example.gb_movies.view.home.HomeFragment
 
 
 class SettingsFragment : Fragment() {

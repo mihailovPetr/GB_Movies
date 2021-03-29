@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.gb_movies.R
 import com.example.gb_movies.databinding.ActivityMainBinding
+import com.example.gb_movies.view.home.HomeFragment
 import com.example.gb_movies.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {

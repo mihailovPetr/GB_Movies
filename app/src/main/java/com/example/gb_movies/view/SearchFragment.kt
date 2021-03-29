@@ -8,10 +8,11 @@ import androidx.fragment.app.Fragment
 import com.example.gb_movies.R
 
 
+
 class SearchFragment : Fragment() {
 
     companion object {
-        val TAG: String = HomeFragment::class.java.name
+        val TAG: String = SearchFragment::class.java.name
 
         fun newInstance(param1: String, param2: String) =
             SearchFragment().apply {
