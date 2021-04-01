@@ -2,8 +2,9 @@
 <resources>
     <dimen name="recycler_item_line_width">1dp</dimen>
     <dimen name="recycler_item_padding">10dp</dimen>
-    <dimen name="recycler_item_text_size">25sp</dimen>
-    <dimen name="recycler_item_corner_radius">15dp</dimen>
+    <dimen name="recycler_item_text_size">15sp</dimen>
+    <dimen name="recycler_item_corner_radius">8dp</dimen>
     <dimen name="recycler_item_elevation">3dp</dimen>
-    <dimen name="heightImage">100dp</dimen>
+    <dimen name="heightImage">120dp</dimen>
+    <dimen name="widthImage">100dp</dimen>
 </resources>

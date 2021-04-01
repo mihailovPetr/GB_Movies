@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
+
     private val adapter = MoviesAdapter(object : MoviesAdapter.OnItemViewClickListener {
         override fun onItemViewClick(movie: Movie) = onRecyclerItemClick(movie)
     })
@@ -47,17 +48,24 @@ class HomeFragment : Fragment() {
         viewModel.getMoviesFromLocalSource()
     }
 
-    private fun initRecyclerView() {
-        binding.moviesRecyclerView.setHasFixedSize(true)
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.moviesRecyclerView.layoutManager = layoutManager
-
-        binding.moviesRecyclerView.adapter = adapter
-
-        val itemDecoration = DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL)
-        itemDecoration.setDrawable(resources.getDrawable(R.drawable.separator, null))
-        binding.moviesRecyclerView.addItemDecoration(itemDecoration)
+    private fun initRecyclerViewOld() {
+//        binding.moviesRecyclerView.setHasFixedSize(true)
+//        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//        binding.moviesRecyclerView.layoutManager = layoutManager
+//
+//        binding.moviesRecyclerView.adapter = adapter
+//
+//        val itemDecoration = DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL)
+//        itemDecoration.setDrawable(resources.getDrawable(R.drawable.separator, null))
+//        binding.moviesRecyclerView.addItemDecoration(itemDecoration)
     }
+
+    private fun initRecyclerView() { //TODO:
+        //TODO:убрать moviesAdapter
+        binding.mainRecyclerView.setHasFixedSize(true)
+        binding.mainRecyclerView.adapter = MainAdapter()
+    }
+
 
     private fun renderData(appState: AppState) {
         when (appState) {

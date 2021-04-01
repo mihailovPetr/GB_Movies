@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemContainer"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/recycler_item_corner_radius"
-    app:cardElevation="@dimen/recycler_item_elevation">
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:cardCornerRadius="@dimen/recycler_item_corner_radius">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/moviesRecyclerItemImageView"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/widthImage"
             android:layout_height="@dimen/heightImage"
             android:background="@drawable/movie"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
+    </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/moviesRecyclerItemTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/recycler_item_padding"
-            android:textSize="@dimen/recycler_item_text_size"
-            tools:text="Фильм" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/moviesRecyclerItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="@dimen/recycler_item_text_size"
+        tools:text="Фильм" />
+</LinearLayout>
+
