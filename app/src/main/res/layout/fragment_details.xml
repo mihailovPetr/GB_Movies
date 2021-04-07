@@ -1,17 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/detailsFragmentRootView"
     android:layout_height="match_parent"
     tools:context=".view.details.DetailsFragment"
     android:background="@color/fragmentBackground">
 
-    <!-- TODO: Update blank fragment layout -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/detailsView">
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tileTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Название фильма"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/posterImageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tileTextView"
+        app:srcCompat="@drawable/movie" />
+
+    <TextView
+        android:id="@+id/genresTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Жанры"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/posterImageView"
+        app:layout_constraintTop_toBottomOf="@id/tileTextView" />
+
+    <TextView
+        android:id="@+id/runtimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Длительность"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/posterImageView"
+        app:layout_constraintTop_toBottomOf="@id/genresTextView" />
+
+    <TextView
+        android:id="@+id/voteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Оценка"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/posterImageView"
+        app:layout_constraintTop_toBottomOf="@id/runtimeTextView" />
+
+    <TextView
+    android:id="@+id/budgetTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Длительность"
+    android:textSize="16sp"
+    app:layout_constraintStart_toEndOf="@+id/posterImageView"
+    app:layout_constraintTop_toBottomOf="@id/voteTextView" />
+
+    <TextView
+        android:id="@+id/revenueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Доход"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/posterImageView"
+        app:layout_constraintTop_toBottomOf="@id/budgetTextView" />
+
+    <TextView
+        android:id="@+id/releaseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дата релиза"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/posterImageView"
+        app:layout_constraintTop_toBottomOf="@id/revenueTextView" />
+
+    <TextView
+        android:id="@+id/overviewTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="Описание"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/posterImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <FrameLayout
+        android:id="@+id/detailsLoadingLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:gravity="center"/>
+        android:background="@color/loadingBackground"
+        android:visibility="gone"
+        tools:visibility="visible">
 
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
 </FrameLayout>

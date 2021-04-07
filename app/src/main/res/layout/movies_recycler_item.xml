@@ -24,9 +24,10 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/moviesRecyclerItemTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/widthImage"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:maxLines="2"
         android:textSize="@dimen/recycler_item_text_size"
         tools:text="Фильм" />
 </LinearLayout>

@@ -7,9 +7,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gb_movies.R
 import com.example.gb_movies.model.Movie
-import com.example.gb_movies.model.testGetMovies
+import com.example.gb_movies.model.MoviesGroup
 
-class MainAdapter() : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+class MainAdapter(private var onItemViewClickListener: MainAdapter.OnMovieItemClickListener?) :
+    RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+
+    private var movieGroupsData: List<MoviesGroup> = listOf()
+
+    fun setData(data: List<MoviesGroup>) {
+        movieGroupsData = data
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(
@@ -19,12 +27,11 @@ class MainAdapter() : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(movieGroupsData[position])
     }
 
     override fun getItemCount(): Int {
-        //TODO:
-        return 10
+        return movieGroupsData.size
     }
 
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,24 +39,31 @@ class MainAdapter() : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         private val title = itemView.findViewById<TextView>(R.id.mainRecyclerTitleTextView)
         private val description =
             itemView.findViewById<TextView>(R.id.mainRecyclerDescriptionTextView)
-        private val recyclerView =
-            itemView.findViewById<RecyclerView>(R.id.mainRecyclerItemsContainer)
 
-        fun bind() {
-            title.text = "Загаловок"
-            description.text = "Описание"
-
-            //TODO:
-            recyclerView.apply {
-                setHasFixedSize(true)
-                adapter = MoviesAdapter(object : MoviesAdapter.OnItemViewClickListener {
-                    override fun onItemViewClick(movie: Movie) {}
-                }).apply {
-                    setMoviesData(testGetMovies())
-                }
+        private val adapter = MoviesAdapter(object : MoviesAdapter.OnItemViewClickListener {
+            override fun onItemViewClick(movie: Movie) {
+                onItemViewClickListener?.onMovieClick(movie)
             }
+        })
+        private val recyclerView =
+            itemView.findViewById<RecyclerView>(R.id.mainRecyclerItemsContainer).also {
+                it.setHasFixedSize(true)
+                it.adapter = adapter
+            }
+
+
+        fun bind(group: MoviesGroup) {
+            group.movies?.let { adapter.setMoviesData(it) }
+            title.text = group.title
+            description.text = group.description
         }
+    }
 
+    fun removeListener() {
+        onItemViewClickListener = null
+    }
 
+    interface OnMovieItemClickListener { //TODO: исправить
+        fun onMovieClick(movie: Movie)
     }
 }

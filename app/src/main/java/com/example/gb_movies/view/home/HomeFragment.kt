@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gb_movies.R
 import com.example.gb_movies.databinding.FragmentHomeBinding
 import com.example.gb_movies.model.Movie
@@ -23,10 +20,12 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
-
-    private val adapter = MoviesAdapter(object : MoviesAdapter.OnItemViewClickListener {
-        override fun onItemViewClick(movie: Movie) = onRecyclerItemClick(movie)
+    private val adapter = MainAdapter(object : MainAdapter.OnMovieItemClickListener {
+        override fun onMovieClick(movie: Movie) {
+            onMovieItemClick(movie)
+        }
     })
+
 
     companion object {
         val TAG: String = HomeFragment::class.java.name
@@ -45,7 +44,7 @@ class HomeFragment : Fragment() {
         initRecyclerView()
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
-        viewModel.getMoviesFromLocalSource()
+        viewModel.getMovieGroupsFromLocalSource()
     }
 
     private fun initRecyclerViewOld() {
@@ -60,18 +59,18 @@ class HomeFragment : Fragment() {
 //        binding.moviesRecyclerView.addItemDecoration(itemDecoration)
     }
 
-    private fun initRecyclerView() { //TODO:
-        //TODO:убрать moviesAdapter
-        binding.mainRecyclerView.setHasFixedSize(true)
-        binding.mainRecyclerView.adapter = MainAdapter()
+    private fun initRecyclerView() {
+        with(binding) {
+            mainRecyclerView.setHasFixedSize(true)
+            mainRecyclerView.adapter = adapter
+        }
     }
-
 
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
                 binding.loadingLayout.visibility = View.GONE
-                adapter.setMoviesData(appState.movieData)
+                adapter.setData(appState.moviesData)
             }
             is AppState.Loading -> {
                 binding.loadingLayout.visibility = View.VISIBLE
@@ -81,7 +80,7 @@ class HomeFragment : Fragment() {
                 binding.homeFragmentRootView.showSnackBar(
                     getString(R.string.error),
                     getString(R.string.reload)
-                ) { viewModel.getMoviesFromLocalSource() }
+                ) { viewModel.getMovieGroupsFromLocalSource() }
             }
         }
     }
@@ -95,7 +94,7 @@ class HomeFragment : Fragment() {
         Snackbar.make(this, text, length).setAction(actionText, action).show()
     }
 
-    private fun onRecyclerItemClick(movie: Movie) {
+    private fun onMovieItemClick(movie: Movie) {
         val manager = activity?.supportFragmentManager
         manager?.beginTransaction()
             ?.replace(R.id.fragment_container, DetailsFragment.newInstance(movie))

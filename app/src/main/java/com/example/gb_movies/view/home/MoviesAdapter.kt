@@ -45,13 +45,13 @@ class MoviesAdapter(private var onItemViewClickListener: OnItemViewClickListener
 
         init {
             itemView.setOnClickListener {
-                onItemViewClickListener?.onItemViewClick(movie)  //TODO:
+                onItemViewClickListener?.onItemViewClick(movie)
             }
         }
 
         fun bind(movie: Movie) {
             this.movie = movie
-            textView.text = movie.name
+            textView.text = movie.title
         }
     }
 

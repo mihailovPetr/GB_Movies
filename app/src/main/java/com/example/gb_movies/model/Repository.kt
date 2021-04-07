@@ -1,6 +1,11 @@
 package com.example.gb_movies.model
 
 interface Repository {
-    fun getMoviesFromServer(): List<Movie>
-    fun getMoviesFromLocalStorage(): List<Movie>
+    fun getMovieGroupsFromServer(requests: List<String>, onLoadedListener: OnLoadedListener)
+    fun getMovieGroupsFromLocalStorage(): List<List<Movie>>
+
+    interface OnLoadedListener {
+        fun onLoaded(movies: List<List<Movie>>)
+        fun onFailed(throwable: Throwable)
+    }
 }
