@@ -1,4 +1,4 @@
-package com.example.gb_movies.view.home
+package com.example.gb_movies.view.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import com.example.gb_movies.R
 import com.example.gb_movies.model.Movie
 import com.example.gb_movies.model.MoviesGroup
 
-class MainAdapter(private var onItemViewClickListener: MainAdapter.OnMovieItemClickListener?) :
+class MainAdapter(private var onItemViewClickListener: OnMovieItemClickListener?) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     private var movieGroupsData: List<MoviesGroup> = listOf()

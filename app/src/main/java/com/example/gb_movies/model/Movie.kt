@@ -17,9 +17,8 @@ data class Movie(
     val budget: Int = 0,
     val revenue: Int = 0,
     val releaseDate: String = "",
-
-
-    ) : Parcelable {
+    val poster: String? = null
+) : Parcelable {
 
 //    enum class Genre { TODO:
 //        ACTION,
@@ -50,6 +49,7 @@ data class MovieDTO(
     val overview: String? = null,
     val genres: List<GenreDTO>? = null,
     val popularity: Float? = null,
+    val poster_path: String? = null,
     val runtime: Int? = null,
     val vote_average: Float? = null,
     val vote_count: Int? = null,
@@ -59,18 +59,7 @@ data class MovieDTO(
     val adult: Boolean? = null,
     val production_countries: List<ProductionCountrieDTO>? = null
 ) {
-    fun getGenres(): String {
-        val sb = StringBuilder()
-        if (genres != null) {
-            for (genre in genres) {
-                sb.append(genre.name)
-                sb.append(", ")
-            }
-        }
-        return sb.substring(0, sb.length - 2)
-    }
-
-    fun getListOfGenres(): List<String> {
+    private fun getListOfGenres(): List<String> {
         val result = ArrayList<String>()
         if (genres != null) {
             for (genre in genres) {
@@ -93,11 +82,12 @@ data class MovieDTO(
             vote_count ?: 0,
             budget ?: 0,
             revenue ?: 0,
-            release_date ?: ""
+            release_date ?: "",
+            poster_path
         )
     }
 }
 
 data class MoviesDTO(
-    val results: List<MovieDTO>
+    val results: List<MovieDTO>?
 )

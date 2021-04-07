@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.gb_movies.R
-import com.example.gb_movies.view.home.HomeFragment
+import com.example.gb_movies.view.main.MainFragment
 
 
 class SettingsFragment : Fragment() {
 
     companion object {
-        val TAG: String = HomeFragment::class.java.name
+        val TAG: String = MainFragment::class.java.name
 
         fun newInstance(param1: String, param2: String) =
                 SettingsFragment().apply {

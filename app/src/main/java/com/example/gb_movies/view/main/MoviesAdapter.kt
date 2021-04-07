@@ -1,4 +1,4 @@
-package com.example.gb_movies.view.home
+package com.example.gb_movies.view.main
 
 import android.view.LayoutInflater
 import android.view.View

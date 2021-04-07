@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.gb_movies.R
 import com.example.gb_movies.databinding.ActivityMainBinding
-import com.example.gb_movies.view.home.HomeFragment
+import com.example.gb_movies.view.main.MainFragment
 import com.example.gb_movies.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun initBottomNavigation() {
         binding.navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.navigation_home -> navigate(HomeFragment())
+                R.id.navigation_home -> navigate(MainFragment())
                 R.id.navigation_search -> navigate(SearchFragment())
                 R.id.navigation_favorite -> true
                 R.id.navigation_settings -> navigate(SettingsFragment())

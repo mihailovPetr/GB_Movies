@@ -1,4 +1,4 @@
-package com.example.gb_movies.view.home
+package com.example.gb_movies.view.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,55 +8,39 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gb_movies.R
 import com.example.gb_movies.databinding.FragmentHomeBinding
+import com.example.gb_movies.databinding.FragmentMainBinding
 import com.example.gb_movies.model.Movie
+import com.example.gb_movies.model.MoviesGroup
+import com.example.gb_movies.utils.showSnackBar
 import com.example.gb_movies.view.details.DetailsFragment
 import com.example.gb_movies.viewmodel.AppState
 import com.example.gb_movies.viewmodel.MainViewModel
-import com.google.android.material.snackbar.Snackbar
 
 
-class HomeFragment : Fragment() {
+class MainFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+
     private val adapter = MainAdapter(object : MainAdapter.OnMovieItemClickListener {
         override fun onMovieClick(movie: Movie) {
             onMovieItemClick(movie)
         }
     })
 
-
-    companion object {
-        val TAG: String = HomeFragment::class.java.name
-        fun newInstance() = HomeFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
+        viewModel.liveData.observe(viewLifecycleOwner, { renderData(it) })
         viewModel.getMovieGroupsFromLocalSource()
-    }
-
-    private fun initRecyclerViewOld() {
-//        binding.moviesRecyclerView.setHasFixedSize(true)
-//        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//        binding.moviesRecyclerView.layoutManager = layoutManager
-//
-//        binding.moviesRecyclerView.adapter = adapter
-//
-//        val itemDecoration = DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL)
-//        itemDecoration.setDrawable(resources.getDrawable(R.drawable.separator, null))
-//        binding.moviesRecyclerView.addItemDecoration(itemDecoration)
     }
 
     private fun initRecyclerView() {
@@ -68,30 +52,21 @@ class HomeFragment : Fragment() {
 
     private fun renderData(appState: AppState) {
         when (appState) {
-            is AppState.Success -> {
+            is AppState.Success<*> -> {
                 binding.loadingLayout.visibility = View.GONE
-                adapter.setData(appState.moviesData)
+                adapter.setData(appState.data as List<MoviesGroup>)
             }
             is AppState.Loading -> {
                 binding.loadingLayout.visibility = View.VISIBLE
             }
             is AppState.Error -> {
                 binding.loadingLayout.visibility = View.GONE
-                binding.homeFragmentRootView.showSnackBar(
+                binding.mainFragmentRootView.showSnackBar(
                     getString(R.string.error),
                     getString(R.string.reload)
                 ) { viewModel.getMovieGroupsFromLocalSource() }
             }
         }
-    }
-
-    private fun View.showSnackBar(
-        text: String,
-        actionText: String,
-        length: Int = Snackbar.LENGTH_INDEFINITE,
-        action: ((View) -> Unit)? = null
-    ) {
-        Snackbar.make(this, text, length).setAction(actionText, action).show()
     }
 
     private fun onMovieItemClick(movie: Movie) {
