@@ -90,4 +90,16 @@ data class MovieDTO(
 
 data class MoviesDTO(
     val results: List<MovieDTO>?
-)
+) {
+
+    fun toMovieList(): List<Movie> {
+        val list = ArrayList<Movie>()
+
+        if (results != null) {
+            for (movieDTO in results){
+                list.add(movieDTO.toMovie())
+            }
+        }
+        return list
+    }
+}

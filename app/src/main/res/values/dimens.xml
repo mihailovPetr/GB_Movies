@@ -3,8 +3,9 @@
     <dimen name="recycler_item_line_width">1dp</dimen>
     <dimen name="recycler_item_padding">10dp</dimen>
     <dimen name="recycler_item_text_size">12sp</dimen>
-    <dimen name="recycler_item_corner_radius">8dp</dimen>
+    <dimen name="recycler_item_corner_radius">20dp</dimen>
     <dimen name="recycler_item_elevation">3dp</dimen>
     <dimen name="heightImage">200dp</dimen>
     <dimen name="widthImage">150dp</dimen>
+    <dimen name="margin_15dp">15dp</dimen>
 </resources>

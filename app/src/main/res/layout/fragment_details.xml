@@ -3,101 +3,111 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/detailsFragmentRootView"
-    android:layout_height="match_parent"
-    tools:context=".view.details.DetailsFragment"
-    android:background="@color/fragmentBackground">
-
-<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/detailsView">
+    android:background="@color/fragmentBackground"
+    android:paddingStart="17dp"
+    android:paddingEnd="12dp"
+    tools:context=".view.details.DetailsFragment">
 
-    <TextView
-        android:id="@+id/tileTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Название фильма"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/posterImageView"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tileTextView"
-        app:srcCompat="@drawable/movie" />
-
-    <TextView
-        android:id="@+id/genresTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Жанры"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/posterImageView"
-        app:layout_constraintTop_toBottomOf="@id/tileTextView" />
-
-    <TextView
-        android:id="@+id/runtimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Длительность"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/posterImageView"
-        app:layout_constraintTop_toBottomOf="@id/genresTextView" />
-
-    <TextView
-        android:id="@+id/voteTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Оценка"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/posterImageView"
-        app:layout_constraintTop_toBottomOf="@id/runtimeTextView" />
-
-    <TextView
-    android:id="@+id/budgetTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Длительность"
-    android:textSize="16sp"
-    app:layout_constraintStart_toEndOf="@+id/posterImageView"
-    app:layout_constraintTop_toBottomOf="@id/voteTextView" />
-
-    <TextView
-        android:id="@+id/revenueTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Доход"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/posterImageView"
-        app:layout_constraintTop_toBottomOf="@id/budgetTextView" />
-
-    <TextView
-        android:id="@+id/releaseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Дата релиза"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/posterImageView"
-        app:layout_constraintTop_toBottomOf="@id/revenueTextView" />
-
-    <TextView
-        android:id="@+id/overviewTextView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:text="Описание"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/posterImageView" />
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tileTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Название фильма"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/posterImageView"
+            android:layout_width="187dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="@dimen/margin_15dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tileTextView"
+            app:srcCompat="@drawable/movie" />
+
+        <TextView
+            android:id="@+id/genresTextView"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15dp"
+            android:layout_marginTop="@dimen/margin_15dp"
+            android:text="Жанры"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/posterImageView"
+            app:layout_constraintTop_toBottomOf="@id/tileTextView" />
+
+        <TextView
+            android:id="@+id/runtimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15dp"
+            android:text="Длительность"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/posterImageView"
+            app:layout_constraintTop_toBottomOf="@id/genresTextView" />
+
+        <TextView
+            android:id="@+id/voteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15dp"
+            android:text="Оценка"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/posterImageView"
+            app:layout_constraintTop_toBottomOf="@id/runtimeTextView" />
+
+        <TextView
+            android:id="@+id/budgetTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15dp"
+            android:text="Длительность"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/posterImageView"
+            app:layout_constraintTop_toBottomOf="@id/voteTextView" />
+
+        <TextView
+            android:id="@+id/revenueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15dp"
+            android:text="Доход"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/posterImageView"
+            app:layout_constraintTop_toBottomOf="@id/budgetTextView" />
+
+        <TextView
+            android:id="@+id/releaseTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15dp"
+            android:text="Дата релиза"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/posterImageView"
+            app:layout_constraintTop_toBottomOf="@id/revenueTextView" />
+
+        <TextView
+            android:id="@+id/overviewTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_15dp"
+            android:text="Описание"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/posterImageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <FrameLayout

@@ -6,9 +6,10 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface MovieAPI {
-    @GET("3/movie/{movie_id}")
+    @GET("movie/{movie_id}")
     fun getMovie(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
@@ -22,12 +23,11 @@ interface MovieAPI {
 //        @Query("api_key") apiKey: String,
 //        @Query("language") language: String = "ru-RU",
 //        @Query("region") region: String = "RU",
-//    ): Call<List<MovieDTO>>
+//    ): Call<MoviesDTO>
 
-    //TODO
-    @GET("3/{path}}")
+    @GET
     fun getMovies(
-        @Path("path") path: String,
+        @Url url: String,
         @Query("api_key") apiKey: String
     ): Call<MoviesDTO>
 }

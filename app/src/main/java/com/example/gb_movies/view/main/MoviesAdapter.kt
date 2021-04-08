@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gb_movies.R
 import com.example.gb_movies.model.Movie
+import com.squareup.picasso.Picasso
 
 
 class MoviesAdapter(private var onItemViewClickListener: OnItemViewClickListener?) :
@@ -42,6 +44,7 @@ class MoviesAdapter(private var onItemViewClickListener: OnItemViewClickListener
 
         private lateinit var movie: Movie
         private val textView = itemView.findViewById<TextView>(R.id.moviesRecyclerItemTextView)
+        private val imageView = itemView.findViewById<AppCompatImageView>(R.id.moviesRecyclerItemImageView)
 
         init {
             itemView.setOnClickListener {
@@ -52,6 +55,12 @@ class MoviesAdapter(private var onItemViewClickListener: OnItemViewClickListener
         fun bind(movie: Movie) {
             this.movie = movie
             textView.text = movie.title
+            movie.poster?.let{
+                Picasso
+                    .get()
+                    .load("https://image.tmdb.org/t/p/w342$it")
+                    .into(imageView)
+            }
         }
     }
 

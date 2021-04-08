@@ -5,7 +5,7 @@ import retrofit2.Callback
 
 class MainRepositoryImpl(private val remoteDataSource: RemoteDataSource) : MainRepository {
 
-    override fun getMovies(path: String, callback: Callback<MoviesDTO>) {
-        remoteDataSource.geMovies(path, callback)
+    override fun getMovies(url: String, callback: Callback<MoviesDTO>) {
+        remoteDataSource.geMovies(url, callback)
     }
 }
